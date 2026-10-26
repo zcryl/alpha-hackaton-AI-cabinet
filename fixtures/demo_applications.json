@@ -1,0 +1,30 @@
+{
+  "_comment": "Профили трёх демо-историй из спецификации бизнес-аналитика (п. 4). Ожидаемые исходы проверяются в tests/test_flow.py. Все данные вымышленные. ИНН имеют верную контрольную сумму.",
+  "story1_approved": {
+    "product_type": "WORKING_CAPITAL", "owner": "client",
+    "expected": "APPROVED",
+    "data": {"inn": "770601234529", "company_name": "ИП Иванов А. А. (демо)", "industry": "trade",
+             "business_age_months": 24, "monthly_revenue": 900000, "monthly_expenses": 400000,
+             "existing_loans_monthly": 50000, "requested_amount": 800000, "requested_term_months": 12,
+             "purpose": "Закупка товара"}
+  },
+  "story2_clarify": {
+    "product_type": "EQUIPMENT", "owner": "client2",
+    "expected": "MANUAL_REVIEW",
+    "data": {"inn": "770501234532", "company_name": "ИП Смирнов Д. В. (демо)", "industry": "construction",
+             "business_age_months": 14, "monthly_revenue": 1000000, "monthly_expenses": 750000,
+             "existing_loans_monthly": 100000, "requested_amount": 3500000, "requested_term_months": 36,
+             "purpose": "Покупка оборудования"},
+    "clarification_message": "Укажите, что вы покупаете (модель, поставщик, стоимость) и будет ли оборудование передано в залог.",
+    "clarification_field": "purpose",
+    "clarification_reply": "Покупаем фрезерный станок с ЧПУ у ООО «Станкоимпорт» (демо) за 3,5 млн ₽, станок передаём в залог банку."
+  },
+  "story3_rejected": {
+    "product_type": "WORKING_CAPITAL", "owner": "client3",
+    "expected": "REJECTED",
+    "data": {"inn": "771201234501", "company_name": "ИП Петров И. С. (демо)", "industry": "trade",
+             "business_age_months": 3, "monthly_revenue": 300000, "monthly_expenses": 250000,
+             "existing_loans_monthly": 20000, "requested_amount": 1500000, "requested_term_months": 12,
+             "purpose": "Оборотные средства"}
+  }
+}

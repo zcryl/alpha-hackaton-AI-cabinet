@@ -1,0 +1,72 @@
+### Коллекция запросов (VS Code REST Client / IntelliJ HTTP Client). Демо-пароль — см. README.
+@host = http://localhost:8000/api/v1
+
+### 1. Вход клиента (token из ответа подставьте в @token)
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{"username": "client", "password": "demo123"}
+
+###
+@token = PASTE_TOKEN_HERE
+
+### 2. Продукты
+GET {{host}}/products
+Authorization: Bearer {{token}}
+
+### 3. Создать черновик (WORKING_CAPITAL или EQUIPMENT)
+POST {{host}}/applications
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"product_type": "WORKING_CAPITAL"}
+
+### 4. Автосохранение черновика (id из шага 3; можно слать часть полей)
+PATCH {{host}}/applications/1/draft
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"data": {"inn": "770601234529", "company_name": "ИП Иванов А. А. (демо)", "industry": "trade",
+          "business_age_months": 24, "monthly_revenue": 900000, "monthly_expenses": 400000,
+          "existing_loans_monthly": 50000, "requested_amount": 800000, "requested_term_months": 12}}
+
+### 5. Отправить (при ответе на уточнение: {"reply": "текст ответа"})
+POST {{host}}/applications/1/submit
+Authorization: Bearer {{token}}
+
+### 6. Статус, оценка, решение и история
+GET {{host}}/applications/1
+Authorization: Bearer {{token}}
+
+### 7. Лента новостей под клиента
+GET {{host}}/news?product_type=WORKING_CAPITAL&industry=trade&status=APPROVED
+Authorization: Bearer {{token}}
+
+### 8. Новая заявка на основе этой (после APPROVED или REJECTED)
+POST {{host}}/applications/1/repeat
+Authorization: Bearer {{token}}
+
+### 8а. Правка заявки, которая ждёт сотрудника (возвращает в DRAFT)
+POST {{host}}/applications/1/edit
+Authorization: Bearer {{token}}
+
+### 9. Сотрудник (войти как officer): запросить данные, field подсвечивает поле клиенту
+POST {{host}}/applications/1/clarify
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"message": "Укажите, что вы покупаете (модель, поставщик, стоимость)", "field": "purpose"}
+
+### 10. Сотрудник: решение вручную (approve | reject)
+POST {{host}}/applications/1/decision
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"action": "approve", "reason": "Залог подтверждён"}
+
+### (комментарий необязателен для одобрения, но обязателен для reject)
+
+### 11. Сброс демо
+# только сотрудник (токен officer), при DEMO_MODE=1
+POST {{host}}/demo/reset
+Authorization: Bearer {{token}}

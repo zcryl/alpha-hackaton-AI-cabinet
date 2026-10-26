@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DEMO_MODE: "1"
+      DEMO_PASSWORD: "${DEMO_PASSWORD:-demo123}"
+      SESSION_TTL_HOURS: "12"
+    volumes:
+      - cabinet-data:/data
+    restart: unless-stopped
+
+volumes:
+  cabinet-data:

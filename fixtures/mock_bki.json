@@ -1,0 +1,58 @@
+{
+  "_comment": "Имитация бюро кредитных историй. Ключ — ИНН ИП. Для ИНН, которых здесь нет, действуют правила по умолчанию из app/checks.py.",
+  "772401234518": {
+    "active_loans_count": 1,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "503801234560": {
+    "active_loans_count": 1,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "780201234584": {
+    "active_loans_count": 3,
+    "overdue_count_12m": 2,
+    "current_overdue_amount": 0
+  },
+  "770501234532": {
+    "active_loans_count": 0,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "770601234529": {
+    "active_loans_count": 0,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "770701234515": {
+    "active_loans_count": 0,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "770801234501": {
+    "active_loans_count": 3,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "770901234505": {
+    "active_loans_count": 1,
+    "overdue_count_12m": 1,
+    "current_overdue_amount": 0
+  },
+  "771001234511": {
+    "active_loans_count": 0,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "771101234508": {
+    "active_loans_count": 0,
+    "overdue_count_12m": 0,
+    "current_overdue_amount": 0
+  },
+  "771201234501": {
+    "active_loans_count": 1,
+    "overdue_count_12m": 2,
+    "current_overdue_amount": 45000
+  }
+}
